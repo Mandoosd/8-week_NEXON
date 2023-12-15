@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXON</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/slick.css">
+    <style>
+        .main_visual {
+            position: relative;
+        }
+
+        .main_visual .menu {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            z-index: 999;
+
+            max-width: 1200px;
+            width: 100%;
+            transform: translate(-50%, 0);
+
+            display: flex;
+
+            color: #fff;
+
+        }
+
+        .main_visual .menu>* {
+            flex: 1;
+        }
+
+        .main_visual .menu a {
+            position: relative;
+            display: block;
+            line-height: 100px;
+            background: #ddd;
+            padding: 0 30px;
+        }
+
+        .main_visual .menu li a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: tomato;
+        }
+
+        .main_visual .menu li.on a::before {
+            width: 100%;
+            transition: width 0.5s;
+        }
+
+        .main_visual .menu a .box {
+            position: relative;
+            z-index: 999;
+        }
+
+        .itm {
+            height: 500px;
+            background: #333;
+            color: #fff;
+        }
+    </style>
+
+
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/slick.min.js"></script>
+
+</head>
+
+<body>
+    <main class="main">
+        <section class="main_visual">
+            <div class="main_slide">
+                <div class="itm itm01">itm01</div>
+                <div class="itm itm02">itm02</div>
+                <div class="itm itm03">itm03</div>
+            </div>
+            <ul class="menu">
+                <li class="on">
+                    <a href="">
+                        <div class="box">
+                            <strong>01 Lorem, ipsum. </strong>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="box">
+                            <strong>02 Lorem, ipsum. </strong>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="box">
+                            <strong>03 Lorem, ipsum. </strong>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script>
+        $(function () {
+
+            $('.main_slide').slick({
+                arrows: false,
+            });
+
+            $('.main_slide').on('afterChange', function (s, e, c) {
+                $('.menu li').removeClass('on');
+                $('.menu li').eq(c).addClass('on')
+            })
+
+            $('.menu li').on('click', function (e) {
+                e.preventDefault();
+                let idx = $(this).index();
+                $('.main_slide').slick('slickGoTo', idx);
+            })
+        })
+    </script>
+</body>
+
+</html>
